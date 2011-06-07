@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/security	http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+   
+    <context:component-scan base-package="org.opevel.web"/>
+    <context:annotation-config />
+    <context:component-scan base-package="org.opevel.web.security"/>
+    <context:component-scan base-package="org.opevel.server"/>
+    <context:component-scan base-package="org.opevel.server.spring"/>
+
+    <!--<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>-->
+ 
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <!--<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="index.htm">indexController</prop>
+                <prop key="/signup">SignupController</prop>
+                <prop key="/account">SignupAccountTypeController</prop>
+                <prop key="/agent">AccountProfileController</prop>
+                <prop key="/confirm">SignupConfirmationController</prop>
+                <prop key="/register">SpringSignupController</prop>
+                <prop key="/google">GoogleLoginService</prop>
+            </props>
+        </property>
+    </bean>-->
+
+    <!--
+		- The BeanNameViewResolver is used to pick up the visits view name (below).
+		- It has the order property set to 2, which means that this will
+		- be the first view resolver to be used after the delegating content
+		- negotiating view resolver.
+     -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
+    
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+    
+    <!--
+    The index controller.
+    -->
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />
+
+    <!-- Enables annotated POJO @Controllers 
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />-->
+
+    <!-- Enables plain controllers -->
+    <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />-->
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1" />
+        <property name="ignoreAcceptHeader" value="true" />
+        <property name="mediaTypes">
+            <map>
+                <entry key="xml" value="application/xml" />
+                <entry key="json" value="application/json" />
+            </map>
+        </property>
+    </bean>
+
+    <!-- Entity Property binding for webBindingInitializer -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="webBindingInitializer">
+                <bean class="org.opevel.web.BindingInitializer" />
+        </property>
+    </bean>
+
+    <bean id="agentEntityBean" class="org.opevel.server.domain.AgentEntity" />
+    <bean id="buyerEntityBean" class="org.opevel.server.domain.BuyerEntity" />
+    <bean id="userEntityBean" class="org.opevel.server.domain.UserEntity" />
+    <!--<bean name="SignupController" class="org.opevel.web.SignupController">
+        <property name="userentity" ref="userEntityBean" />
+    </bean>-->
+    
+    <!--<bean name="SpringSignupController" class="org.opevel.server.SpringSignupServiceImpl">
+        <property name="userentity" ref="userEntityBean" />
+    </bean>-->
+	 <!--<bean id="signup" class="org.opevel.web.SignupController"/>-->
+
+    <!--<bean name="SignupAccountTypeController" class="org.opevel.web.SignupAccountTypeController" scope="session" >
+        <property name="agententity" ref="agentEntityBean" />
+        <property name="buyerentity" ref="buyerEntityBean" />
+    </bean>
+    <bean name="AccountProfileController" class="org.opevel.web.AgentController" p:requireSession="true"
+    scope="session" />
+    <bean name="SignupConfirmationController" class="org.opevel.web.SignupConfirmationController"
+    scope="session" p:requireSession="true" />
+
+    <bean id="GoogleLoginService" class="org.opevel.web.LoginGoogleController" />-->
+
+    <!--<bean name="GWTController" class="org.opevel.web.gwt.server.GWTController">
+        <property name="SpringSignupService">
+            <bean class="org.opevel.server.SpringSignupServiceImpl"/>
+        </property>
+    </bean>-->
+
+
+
+
+</beans>

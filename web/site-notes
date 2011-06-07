@@ -1,0 +1,1928 @@
+Property marketing software
+
+1. Would you want a website where you can search for real estate properties and be able to bid for it?
+
+2. Would you like it to be socially driven?
+
+
+
+
+
+
+
+
+Anirudh Dewani - App Engine, GWT
+Brett Morgan - App Engine, GWT
+Bruno Oliveira - OpenSocial
+Chris Chabot - OpenSocial
+Chris Schalk - App Engine, Opensocial
+Chris Ramsdale - GWT, App Engine, HTML5
+David Chandler - App Engine, GWT
+Alain Vongsouvanh - Google Apps, GData
+Don Dodge - Google Apps, Apps Marketplace, Venture capital
+Eric Bidelman - Native client, chrome, Docs, Sites, Health, OAuth
+
+cloud enthusiate, corporate trainer
+
+
+Roo Questions
+
+When you type "gwt setup", it automatically gives support for springmvc to your application. What gives me concern is
+that the GWT module file is not present. My question now is, how then do we define entry points? Springmvc now being
+configured means more page oriented application design which is something I will like to do away with. The popular
+GWT module helps create a single page application, which of course is the beauty of GWT. Please let me know if I'm
+getting something wrong.
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+
+    <persistence-unit name="transactions-optional">
+        <provider>org.datanucleus.store.appengine.jpa.DatastorePersistenceProvider</provider>
+        <properties>
+            <property name="datanucleus.NontransactionalRead" value="true"/>
+            <property name="datanucleus.NontransactionalWrite" value="true"/>
+            <property name="datanucleus.ConnectionURL" value="appengine"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="eventual-reads-short-deadlines">
+        <provider>org.datanucleus.store.appengine.jpa.DatastorePersistenceProvider</provider>
+        <properties>
+            <property name="datanucleus.NontransactionalRead" value="true"/>
+            <property name="datanucleus.NontransactionalWrite" value="true"/>
+            <property name="datanucleus.ConnectionURL" value="appengine"/>
+
+            <property name="datanucleus.appengine.datastoreReadConsistency" value="EVENTUAL" />
+            <property name="javax.persistence.query.timeout" value="5000" />
+            <property name="datanucleus.datastoreWriteTimeout" value="10000" />
+        </properties>
+    </persistence-unit>
+</persistence>
+
+Check the file attributes for project.properties.
+ 
+Make sure it is not set read-only.  Make a copy of it outside the directory, then delete the in-directory version and move the copy back into its place. Since you�re the owner of the copy this process should remove all/any read/write locks on the file. Check for the existence of an .lck file in the directory. Delete it if its not recent. (I have a faint memory that older NB versions used.lck files to read/write lock system files, but I could be wrong.)
+ 
+If that doesn�t work go into the file properties and elevate the user permissions to give yourself ownership and full rights, if you don�t have those already.
+ 
+Tony
+
+
+Feb 18, 2011
+Here is a full error details of why my current project is not listed in the project palette. Note: As a 
+prerequisite, I uninstalled 6.8 and removed its user settings directory so that 6.9.1 doesn't depend on it 
+any longer. 
+
+So I did this: I went to the server palette and tried to start app engine. Here is what I got: 
+
+A java.lang.NullPointerException exception has occurred. Please report this at 
+http://www.netbeans.org/community/issues.html, including a copy of your messages.log file as an attachment. 
+
+I have attached the log file and submitted to the appropriate issue queue. When I toggled on the show 
+details button, I got this:
+
+java.lang.NullPointerException
+	at org.netbeans.modules.j2ee.appengine.ide.AppEngineDeployer.run(AppEngineDeployer.java:140)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1418)
+[catch] at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:1957)
+
+
+
+But here's an excerpt of the content of the messages.log file:
+
+-------------------------------------------------------------------------------
+>Log Session: Friday, February 18, 2011 11:17:57 PM GMT
+>System Info: 
+  Product Version         = NetBeans IDE 6.9.1 (Build 201011082200) (#3acac80d2b13)
+  Operating System        = Windows 2003 version 5.2 running on x86
+  Java; VM; Vendor        = 1.6.0_06; Java HotSpot(TM) Client VM 10.0-b22; Sun Microsystems Inc.
+  Runtime                 = Java(TM) SE Runtime Environment 1.6.0_06-b02
+  Java Home               = C:\Java\jdk1.6.0_06\jre
+  System Locale; Encoding = en_US (nb); Cp1252
+  Home Directory          = C:\Documents and Settings\Administrator
+  Current Directory       = C:\Program Files\NetBeans 6.9.1
+  User Directory          = C:\Documents and Settings\Administrator\.netbeans\6.9
+  Installation            = C:\Program Files\NetBeans 6.9.1\nb
+                            C:\Program Files\NetBeans 6.9.1\ergonomics
+                            C:\Program Files\NetBeans 6.9.1\ide
+                            C:\Program Files\NetBeans 6.9.1\java
+                            C:\Program Files\NetBeans 6.9.1\apisupport
+                            C:\Program Files\NetBeans 6.9.1\websvccommon
+                            C:\Program Files\NetBeans 6.9.1\enterprise
+                            C:\Program Files\NetBeans 6.9.1\mobility
+                            C:\Program Files\NetBeans 6.9.1\profiler
+                            C:\Program Files\NetBeans 6.9.1\ruby
+                            C:\Program Files\NetBeans 6.9.1\php
+                            C:\Program Files\NetBeans 6.9.1\identity
+                            C:\Program Files\NetBeans 6.9.1\harness
+                            C:\Program Files\NetBeans 6.9.1\cnd
+                            C:\Program Files\NetBeans 6.9.1\dlight
+                            C:\Program Files\NetBeans 6.9.1\groovy
+                            C:\Program Files\NetBeans 6.9.1\javafx
+                            C:\Program Files\NetBeans 6.9.1\javacard
+                            C:\Program Files\NetBeans 6.9.1\platform
+  Boot & Ext. Classpath   = C:\Java\jdk1.6.0_06\jre\lib\resources.jar;C:\Java\jdk1.6.0_06\jre\lib\rt.jar;C:\Java\jdk1.6.0_06\jre\lib\sunrsasign.jar;C:\Java\jdk1.6.0_06\jre\lib\jsse.jar;C:\Java\jdk1.6.0_06\jre\lib\jce.jar;C:\Java\jdk1.6.0_06\jre\lib\charsets.jar;C:\Java\jdk1.6.0_06\jre\classes;C:\Java\jdk1.6.0_06\jre\lib\ext\dnsns.jar;C:\Java\jdk1.6.0_06\jre\lib\ext\localedata.jar;C:\Java\jdk1.6.0_06\jre\lib\ext\sunjce_provider.jar;C:\Java\jdk1.6.0_06\jre\lib\ext\sunmscapi.jar;C:\Java\jdk1.6.0_06\jre\lib\ext\sunpkcs11.jar
+  Application Classpath   = C:\Program Files\NetBeans 6.9.1\platform\lib\boot.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\org-openide-modules.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\org-openide-util-lookup.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\org-openide-util.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\boot_ja.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\boot_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\boot_zh_CN.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-modules_ja.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-modules_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-modules_zh_CN.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-util-lookup_ja.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-util-lookup_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-util-lookup_zh_CN.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-util_ja.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-util_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\platform\lib\locale\org-openide-util_zh_CN.jar;C:\Java\jdk1.6.0_06\lib\dt.jar;C:\Java\jdk1.6.0_06\lib\tools.jar
+  Startup Classpath       = C:\Program Files\NetBeans 6.9.1\platform\core\core.jar;C:\Program Files\NetBeans 6.9.1\platform\core\org-openide-filesystems.jar;C:\Program Files\NetBeans 6.9.1\platform\core\locale\core_ja.jar;C:\Program Files\NetBeans 6.9.1\platform\core\locale\core_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\platform\core\locale\core_zh_CN.jar;C:\Program Files\NetBeans 6.9.1\platform\core\locale\org-openide-filesystems_ja.jar;C:\Program Files\NetBeans 6.9.1\platform\core\locale\org-openide-filesystems_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\platform\core\locale\org-openide-filesystems_zh_CN.jar;C:\Program Files\NetBeans 6.9.1\nb\core\org-netbeans-upgrader.jar;C:\Program Files\NetBeans 6.9.1\nb\core\locale\core_nb.jar;C:\Program Files\NetBeans 6.9.1\nb\core\locale\core_nb_ja.jar;C:\Program Files\NetBeans 6.9.1\nb\core\locale\core_nb_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\nb\core\locale\core_nb_zh_CN.jar;C:\Program Files\NetBeans 6.9.1\nb\core\locale\org-netbeans-upgrader_ja.jar;C:\Program Files\NetBeans 6.9.1\nb\core\locale\org-netbeans-upgrader_pt_BR.jar;C:\Program Files\NetBeans 6.9.1\nb\core\locale\org-netbeans-upgrader_zh_CN.jar
+
+Sirs / profs, any help will be much appreciated. As an addendum, App Engine never started still.
+
+This is my observation as regards what is happening. I have decided not to uninstall 6.9.1 as I suspect the 
+problem will persist since I don't want to remove Netbeans user settings directory during uninstall. I have
+however removed 6.8 anyway.
+
+When I started working on my project, I didn't start it with netbeans. I started with notepad. So later on 
+I imported the project into netbeans - which works well. I suspect that when netbeans started the process 
+"Checking for external changes" which is synonymous to automatic project refresh, it tries to scan through 
+the project to make sure build is in sync with Netbeans project structure (please correct me if I'm wrong). 
+So am I guessing something went wrong along the way during this process.
+
+I think Netbeans will be truly be "the only IDE I need" if the upgrade system can be done without 
+downloading new setup files. It really slows down development TBH.
+
+
+Question on GAE group
+
+Where is it advisable to put JPA mapped Entity classes?
+
+Hello,
+
+i will appreciate some guide as to where exactly to put JPA mapped Entity classes. At the moment I have it
+under "com.foo.server.domain". But whenever I compile the app, GWT returns:
+
+No source code is available for type com.foo.server.domain.Users; did you forget to inherit a required
+module?
+
+Netbeans crashed on javaee6 lib include on build
+
+Well, I think this is another bug. I know including the whole javaee6 lib in a project is a huge task for
+Netbeans to handle. But couldn't such exception been handled by Netbeans platform instead of automatically 
+crashing the entire software?
+
+
+MVP
+
+For every view, you need a presenter
+
+Your Viewpresenter presents your view to the entrypoint for display
+
+The logic of display of the view lies in the Viewpresenter
+
+Every view that is got a button should use Async Callback (will be handled by the presenter).
+
+Use go (i.e presenter method) to call another widget, and use Custom interface (Display - which is inside 
+the presenter) to display a view which get data from an Entity.
+
+Every view with a link(Hyperlink) should handle display using go as long as the view is also another widget.
+
+on every link (Hyperlink), you should register its token in History
+
+eventBus is used when you need to initiate your own event which is different from that provided by GWT. 
+This is why a new class is created which extends GWTEvent class. When you create this new event class,
+you create your own event method in it and then you call(handle) that event method in its respective
+presenter.
+
+Display = view
+
+bind() binds the presenter to the Display
+
+Presenter and Place
+-------------------
+# You can place a presenter in a place
+# A place can create and handle request
+# A place listens to History token
+Question
+
+1. How does RequestFactory dispatch to a view or widget
+
+2. How does RequestBuilder dispatch to a view or widget
+
+3. How does RPC dispatch request to a view
+
+I am also looking for examples on the integration of Spring and RequestFactoryServlet, particularly as
+regards to servlet dispatch to GWT view.
+
+
+Updated Architecture
+
+- Start page is welcome page, which is controlled by Listings.gwt.xml
+
+- Start page contains link to signup if user is not logged in
+
+- If user is anonymous, goes to welcome page (content of welcome page: about ilistings, signup link,
+video content of ilistings, login form to existing user)
+
+- signup process is handled by Spring. When user clicks signup from the welcome page, request is sent
+to Spring Controller to handle the registration process.
+
+- When user completes registration, redirects to agent or buyer profile page
+
+- when existing user logs in or user cookie exists, redirects to dashboard.
+
+
+zim farmers in kwara state
+
+
+Ideas
+
+1. Cassava farming, dairy products(soya beans, maize), chicken and rice
+
+2. Big truck transportation of goods
+
+
+Requirements for farming
+
+- 1000 ha
+- Electricity
+- Irrigation
+- Startup fees of $2m
+- upto 450 workers for a farming period
+
+Cassava proceeds
+
+- about 400 products
+- glucose syrup which can contain about 60 prducts
+-
+
+Implementation
+
+- make use of local farmers around the area of business
+-
+
+
+SpringSignupServiceImpl = normal RPC implementation but extends GWTController. This class also is the
+bean registered in Spring. it's request mapping is /signup
+
+
+Discuss the letterhead for the oil & gas with her. Let her know its for an event in US and you have a
+cousin there who have already made hotel reservation for us. Make sure she gets a reputable company in
+case of embassy wahala.
+
+Letterhead, ID card, payment, registration at OTC and filling US Embassy form online. Embassy of choice
+is Abuja.
+
+
+Hosting JSP pages in your gwt application
+
+For JSP to compile correctly, settings in the web.xml file have to be done so the servlet container
+knows how to deal with the page.
+
+<servlet path="/VirtualTours.jsp" class="org.apache.jasper.servlet.JspServlet" />
+
+<servlet>
+    <servlet-name>jspServlet1</servlet-name>
+    <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>jspServlet1</servlet-name>
+    <url-pattern>/virtualtours/VirtualTours.jsp</url-pattern>
+</servlet-mapping>
+
+One solution is to call the GWT url from Spring over RPC
+
+Spring RPC(SL)(the client) makes the call to GWT Service(the service) and GWT Service dispatch the
+response by returning a GWT view.
+
+The bean sends a service(interface) to RPC through the JSP action attribute
+
+agent/profile/{username} - redirect to profile/{username} - the GWT module view
+buyer/profile/{username} - redirect to profile/{username} - the GWT module view
+
+or
+
+/profile?view=agent
+/profile?view=buyer
+
+or if using GWT URL rewriting through the history token
+
+#profile?view=agent
+#profile?view=buyer
+
+Another way is to use REST by having the Spring controller return JSON or XML data. There are 2 ways to
+do this:
+    - use a ContentNegotiatingViewResolver
+    - use HttpMessageConverters in combination with the @ResponseBody annotation
+
+# Google search queries
+- call GWT view from Springmvc
+
+
+- create(or register) the GWT service URL(the endpoint) (through GWT-RPC). Pass in query parameters
+- Make the service call from springmvc to the GWT service URL using REST
+- Return a Java Object (which is a GWT EntryPoint to a GWT view)
+
+Everything is energy
+Energy can never be created or destroyed. It is always was, always has been, everything that exists has
+always exists, it's always moving in form, through form, out of form. Who created energy. It is God. So
+God is energy.
+
+The power within you is greater than the power in the world.
+
+Every single I'm not is a creation.
+
+Whether you think you can or you can't, either way you are right. - Henry Ford
+
+There's no blackboard in the Sky that says this is what you are going to be. Your mission on earth is
+to find that blackboard and find out really what God has in mind for you. But the blackboard doesn't
+exist. So your purpose is what you say it is. You life is what you created as.
+
+Inner happiness is the fuel of success.
+
+Follow your bliss and the universe will open doors for you where there were only walls. Joseph Campbell.
+
+
+Java Note
+---------
+
+# To instantiate a class without using the new keyword, use any of the following methods:
+    - have a default constructor
+    - create a setter for the class you want to create an instance of
+    - use the factory method to create an instance of it
+
+# To instantiate an interface in GWT:
+    - use GWT.create(ClassName.class);
+
+
+HTTP Session
+------------
+
+What is contained in a session is session identifier, creation time and last accessed time. You can also store info such as form data in a session. This sort of data is called attributes.
+
+Types of scopes
+---------------
+
+- session: for the current session
+- page: for the current page
+- request: for the current request
+- application: accessible everywhere
+
+
+Spring books
+------------
+
+- Expert One-on-One J2EE Design and development
+- Professional Java development with the spring framework
+
+
+Using urlrewrite and history token to display different GWT views
+-----------------------------------------------------------------
+
+if(urlrewrite is agentprofile)
+call the agentprofile presenter
+
+Theory: Have 2 different compilations one for Admin and one for the Home application. Use the history
+tokens to indicate that you want Admin or Home - Check a JS variable to show one or the other - Check
+the presence of a specific Div id to show Admin or home (RootPanel.get(id)) - Use URL parameters to
+indicate the application
+
+
+PlaceRequest = request handler for a location(place)
+PresenterPlace = doing stuff with the presenter that is meant to be displayed in a place. i.e create a
+place (location) for your presenter.
+
+GWT Activity and Place in a nutshell
+------------------------------------
+Sometime ago I was looking for how to create multiple views from a single GWT module. Most threads have
+their views. For example, I read somewhere that you can create multiple modules and then create
+corresponding EntryPoint classes. Another says, you can use the Javascript Dictionary which uses one
+module but multiple EntryPoints. I've been using the Javascript Dictionary method up until now.
+
+One more, I find the UrlRewrite and History token method fascinating. What it does is that it uses some
+kind of fake REST to identify your view and set specific views without necessarily clogging up your app
+with bad architecture.
+
+After further digging, I'll say GWT Activity and Place implements beautifully the UrlRewrite and History
+token workaround. Here are my facts after successful implementation.
+
+Activity - similar to Presenter in MVP. This is like a client controller to every GWT view
+ActivityManager - manages all your activity(ies).
+Place - A place is a URL location but specifically, the History token kind of URL. Have you noticed
+URLs such as http://app.com/#profile in Google GWT apps such as Gmail? Yeah! It is such URLs Place works
+with. In GWT, every token is like a page but an internal page identified by a token. I really like how
+GWT-Presenter explains Place.
+ClientFactory - A client factory used to register all objects needed for the entire app. Objects such as EventBus, PlaceController and corresponding View widget for that Place.
+
+Activity - references Place, Activty, PlaceController, PlaceHistoryHandler, PlaceHistoryMapper
+
+A Place (the URL) with a PlaceTokenizer to identify the History token
+
+PlaceController - For navigating to a Place(location)
+
+PlaceHistoryHandler - Map between Places and the URL
+
+PlaceHistoryMapper - used to attach all places which the PlaceHistoryHandler should be aware of
+
+ActivityMapper - bind the Place to its Corresponding Activity. returns an Activity
+
+ActivityManager - manages all Activities and listens for Events. It manages movement from one Activity to another. Uses ActivityMapper to obtain the Activity associated with the requested Place
+
+
+ClientFactory or GIN (optional)
+	|
+    Activity
+	|
+      Place
+	|
+ActivityMapper
+	|
+ActivityManager
+
+But one thing here is, there's so much boiler plate code
+
+Note: You can only have one ActivityMapper
+You can only have one ActivityManager. Make it a singleton
+
+
+Successful implementation of the Activity and Place can also be found in GWT-Presenter, GWT-Mvp and
+Mvp4g
+
+wget -c http://s3.amazonaws.com/dist.springframework.org/milestone//spring-security-3.1.0.RC1.zip
+
+Application road-map
+--------------------
+- Design the UI for frontpage, agent/buyer registration pages, search page and upload property page
+- Implement the upload feature
+- implement search
+- Expose pekuliar properties to Listings search
+
+Listings authentication system
+------------------------------
+- Google Accounts or Federated Login via OpenID
+- Spring Security + Google Accounts
+
+Authentication UML
+------------------
+User Signup
+- Enter email
+- Enter password
+- Enter account type
+- Button name is "Signup"
+- Based on account type, user is directed to either agent ot buyer registration page
+
+
+User Login
+- Button name is "Login with"
+- On frontpage, user picks whether to login with Facebook, Google, Yahoo or Twitter
+- On click user is taken to the provider site for identification
+- On return, check user's data whether it exists in iListings GAE
+- If not, user is redirected to "/signup" with a message, "Sorry your account doesn't exist with us.
+Sign up as a new user".
+- If yes, identify the user, set the session and authenticate the user. Redirect to the dashboard
+
+
+UploadListing UML
+-----------------
+
+- Client view is GWT combined with GWTUpload library
+- GWTUpload handles file upload, stores it in the session object
+- UploadListing View: UploadListing
+- UploadListing View Impl: UploadListingImpl
+- UploadListing Place: uploadListingPlace. value = UploadListing#uploadlisting
+- UploadListing Activity: uploadListingActivity
+- OnSubmit, GWT-RPC is called to send request and persist data
+- GWT-RPC Service: UploadListingService
+- GWT-RPC Service Impl: UploadListingServiceImpl
+- GWT-RPC Service Async: UploadListingServiceAsync
+- Status message of success is "Upload Successful. View"
+- ListingEntity
+- ListingEntityDTO
+- Perform activities such as country, state and city field population in uploadListingActivity
+
+//inside UploadListing interface
+
+ListingEntityDTO setNewListingsData();
+
+//inside uploadListingImpl
+
+ListingEntityDTO newListings = this.setNewListingsData();
+createNewListing(newListings, callback);
+
+
+public ListingEntityDTO setNewListingsData() {
+
+
+}
+
+Why are important methods in HTMLTable protected?
+
+If Grid is an class implementation of HTMLTable, why are most of the methods such as setCellFormatter().
+setColumnFormatter() etc, protected? How am I expected to access these methods from the instantiation
+of Grid. How can I use HTMLTable?
+
+GWT + Spring
+------------
+The solution is to turn the Spring Controller to GWT-RPC managed Spring Controller or use the GWT-SL library to do this.
+
+How to pass form request parameters from GWT client to Spring Controller
+
+	- Find a way to allow GWT-RPC to also pass along form parameters, then handle it on the GWT-RPC side.
+	- Alternatively, use GWT-RPC as the Spring Controller to handle the request on the server-side or use Spring Controller to as an RPC to handle the request on the server side. This is what GWT-SL can do
+
+GWT client request to Spring Controller
+
+On the frontpage
+----------------
+Get Started in Easy Steps
+
+- Sign up as an agent or a buyer
+- Upload, find and buy properties
+- Socialize with the agents you buy from
+
+
+OpenID UML
+----------
+For each provider there's a servlet
+
+- LoginGoogleController to create the URL and send the request
+	- Request URL (GET) is auth/openid/google
+- LoginFacebookController to handle Google OpenID request
+	- Request URL is auth/openid/fb
+
+- LoginGoogleCallbackServlet to update the UserEntity and login the User if the user exists and redirect to Dashboard or create the user if it doesn't exist and redirect to /auth/account
+	- /auth/account servlet will allow the user to select agent/buyer
+
+class RequestBundle {
+
+sendRequest(Provider provider) {
+
+}
+
+void sendOpenIdRequest(String provider) {
+new RequestBuilder.sendRequest(RequestBuilder.GET, GWT.getHostPageBaseURL() + provider).sendRequest(null));
+
+}
+}
+<bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    <property name="alwaysUseFullPath" value="true" />
+
+Deploying to App Engine
+-----------------------
+"appcfg --enable_jar_splitting update path/to/project/build/web path/to/project/dist/"
+
+D:\>appcfg --enable_jar_splitting update AllData/netBeans_Projects/Listings/buil
+d/web AllData/netBeans_Projects/Listings/dist/
+
+Registering login form in Spring bean with Spring security
+
+<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+	  <property name="loginFormUrl" value="/login.do"/>
+	</bean>
+
+if(user != null && findByEmail(user.getEmail()) != null) {
+
+//userEntity.setUser(user);
+createUserFromOpenID(user);
+// on success of the persistence, login the user and redirect to /auth/account (so that the user can select either buyer or agent).
+}
+
+Boolean createUserFromOpenID(User user) {
+
+UserEntity userEntity = new UserEntity();
+userEntity.setEmail(user.getEmail());
+userEntity.setNickname(user.getNickname()); // same as username
+userEntity.setId(user.getUserId());
+
+//persist user;
+
+return true;
+
+}
+
+// add to UserEntity fields
+String Nickname;
+
+
+
+
+//new method on the server
+String findByEmail(String email) {
+
+
+}
+
+package org.opevel.server.dao;
+
+class UserEntityDAOImpl {
+
+String findByEmail(String email) {
+
+
+}
+
+
+}
+
+interface UserEntityDAO {
+
+String findByEmail(String email);
+}
+
+Error from gwtupload-gae library
+--------------------------------
+
+POST http://localhost:8888/uploadListing/file 500 (java.rmi.server.UID is a restricted class.
+Please see the Google App Engine developer's guide for more details.)
+
+Full error stack:
+
+[java] java.lang.NoClassDefFoundError: java.rmi.server.UID is a restricted class. Please see the Google  App Engine developer's guide for more details.
+     [java]         at com.google.appengine.tools.development.agent.runtime.Runtime.reject(Runtime.java:51)
+     [java]         at org.apache.commons.fileupload.disk.DiskFileItem.<clinit>(DiskFileItem.java:96)
+     [java]         at org.apache.commons.fileupload.disk.DiskFileItemFactory.createItem(DiskFileItemFactory.java:191)
+     [java]         at org.apache.commons.fileupload.FileUploadBase.parseRequest(FileUploadBase.java:350)
+     [java]         at org.apache.commons.fileupload.servlet.ServletFileUpload.parseRequest(ServletFileUpload.java:126)
+     [java]         at gwtupload.server.UploadServlet.parsePostRequest(UploadServlet.java:617)
+     [java]         at gwtupload.server.UploadAction.doPost(UploadAction.java:175)
+     [java]         at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+     [java]         at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+     [java]         at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
+     [java]         at com.google.appengine.api.blobstore.dev.ServeBlobFilter.doFilter(ServeBlobFilter.java:58)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at com.google.apphosting.utils.servlet.TransactionCleanupFilter.doFilter(TransactionCleanupFilter.java:43)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at com.google.appengine.tools.development.StaticFileFilter.doFilter(StaticFileFilter.java:122)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:388)
+     [java]         at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+     [java]         at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+     [java]         at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+     [java]         at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:418)
+     [java]         at com.google.apphosting.utils.jetty.DevAppEngineWebAppContext.handle(DevAppEngineWebAppContext.java:70)
+     [java]         at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+     [java]         at com.google.appengine.tools.development.JettyContainerService$ApiProxyHandler.handle(JettyContainerService.java:351)
+     [java]         at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+     [java]         at org.mortbay.jetty.Server.handle(Server.java:326)
+     [java]         at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+     [java]         at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:938)
+     [java]         at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:755)
+     [java]         at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+     [java]         at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+     [java]         at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+     [java]         at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+
+TODO
+----
+
+In GAE group, find the thread that discusses about what is going on in RPC.
+
+
+Q: How to read byte by byte from a Datastore Entity Object.
+
+In a nutshell, since GAE cannot write to a filesystem, I have decided to persist my data into the
+datastore (using JDO). Now, I will like to retrieve the data byte by byte and pass it to the client
+as an input stream. There's code from the gwtupload library (see below) which breaks on GAE
+because it writes to the system filesystem. I'll like to be able to provide a GAE ported solution.
+
+
+public static void copyFromInputStreamToOutputStream(InputStream in, OutputStream out) throws IOException {
+    byte[] buffer = new byte[100000];
+    while (true) {
+      synchronized (buffer) {
+        int amountRead = in.read(buffer);
+        if (amountRead == -1) {
+          break;
+        }
+        out.write(buffer, 0, amountRead);
+      }
+    }
+    in.close();
+    out.flush();
+    out.close();
+  }
+
+One work around I have tried is to retrieve the data from the datastore as a resource like this:
+
+InputStream resourceAsStream = null;
+    PersistenceManager pm = PMF.get().getPersistenceManager();
+    try {
+        Query q = pm.newQuery(ImageFile.class);
+        lf  = q.execute();
+        resourceAsStream = getServletContext().getResourceAsStream((String) pm.getObjectById(lf));
+    } finally {
+      pm.close();
+    }
+    if (lf != null) {
+      response.setContentType(receivedContentTypes.get(fieldName));
+      copyFromInputStreamToOutputStream(resourceAsStream, response.getOutputStream());
+
+    }
+
+I welcome your suggestions.
+
+Regards
+
+possible solution:
+- Store the ListingFile as a resource i.e don't store it in the datastore
+- retrieve like this: 
+Resource r = ServletContext.getResourceAsStream();
+- pass it to copyFromInputStreamToOutputStream like this: 
+copyFromInputStreamToOutputStream(r, response.getOutputStream());
+Search
+------
+
+# Storing data as a resource in Google App Engine (i.e how to write )
+Solution:
+- Find a way to use the servlet api or spring api or apache commons fileupload api to upload the
+files to /war/images (as a resource)
+- Store part of the meta-data in GAE to identify the files
+- Then retrieve them with ServletContext.getResourceAsStream();
+- Put the following in appengine.xml so the server can find the files.
+<resource-files>
+        <include path="/images/**.png" />
+        <!--<exclude path="/feeds/**.xml" />-->
+</resource-files>
+
+# Retrieving data from the datastore as a resource
+
+# Using apache commons for file upload
+
+Question to gwtupload: How to debug UploadServlet and UploadAction for AppEngine
+
+
+Here is my summary after series of trials
+-----------------------------------------
+
+1. I can't use the Blobstore api because I'm using GWT for the view
+2. From my understanding of the Fileservice API, it requires that I need to have gotten the bytes
+of the data before it can be written to the FileWriteChannel. One option is through the Blobstore
+ API, but like I said, I'm unable to use Blobstore with GWT. Though it is possible via RPC, but its
+implementation will allow a refresh to another url such as /serve?blob-key. This will break my
+design design pattern as all I want is that after the upload, the user remains on the same GWT Place.
+I don't know how to do this. I need help.
+3. I tried to the following code, but i wasn't able to persist the bytes in the buffer:
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        HttpSession session = request.getSession();
+        log.info(request.toString());
+
+        try {
+      ServletFileUpload upload = new ServletFileUpload();
+      response.setContentType("multipart/form-data");
+
+      FileItemIterator iterator = upload.getItemIterator(request);
+      while (iterator.hasNext()) {
+        FileItemStream item = iterator.next();
+        InputStream stream = item.openStream();
+        log.info("logging stream " + stream.toString());
+
+        if (item.isFormField()) {
+          log.warning("Got a form field: " + item.getFieldName());
+        } else {
+          log.warning("Got an uploaded file: " + item.getFieldName() +
+                      ", name = " + item.getName());
+
+          int len;
+          byte[] buffer = new byte[100000];
+          len = stream.read(buffer, 0, buffer.length);
+          ListingFile listingfile = new ListingFile();
+          listingfile.setTitle(item.getName());
+          listingfile.setImageType(item.getContentType());
+          listingfile.setImage(buffer); // setImage holds byte[] in the Entity. Couldn't be persisted
+
+          PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            pm.makePersistent(listingfile);
+        }
+        finally {
+            pm.close();
+        }
+        }
+      }
+    } catch (Exception ex) {
+      throw new ServletException(ex);
+    }
+    }
+	
+	Storing the blobstore problem
+	-----------------------------
+	Property type table references category table
+
+
+Category
+
+id	name
+1	real estate
+
+
+Property Type
+
+id	name	category_name
+1	land	real estate
+2	smth	real estate
+
+
+Listing Type field displays record from property Type name column
+Listing Category field displays record from Category name colomn
+
+Relationship between Category and Property Type is one-to-many. i.e one category can have multiple property types
+
+
+What is the replacement for ApiProxyLocalImpl?
+
+I am trying to preform unit testing locally with JDO as the ORM. I am using the aeftools library from appenginefan on GAE 1.4.2. Is there an existing replacement for com.google.appengine.tools.development.ApiProxyLocalImpl in 1.4.2?
+
+Regards
+
+
+// instantiate the persistencemanager
+// run a query for the expected result
+// call assertEquals to verify if 
+
+-Xmx256M
+
+/images/**.png
+/images/**.jpg
+/images/**.gif
+
+<resource-files>
+        <include path="/images/**.png" />
+        <exclude path="/feeds/**.xml" />
+</resource-files>
+
+Application as systems administrator
+
+Please send your application including salary expectations and your possible start date via email to jobs@numberfour.eu. For further information please contact Janina Cussmann at jobs@numberfour.eu or +49-30-40505411.
+
+Application as web developer
+helened@mryouth.com
+
+Application as Java Software Engineer / Developer
+stackoverflowcareers@olsdallas.com
+
+Application as Java Developer
+recruiting@coralnetworks.com.
+
+Application as Java Web Developer
+job032011@revsystems.com
+
+
+
+Dear Hiring Manager,
+
+I have 4 years working experience as an application developer under java
+platform, Oracle Technology, PHP, and Google Tools. I have
+created dynamic web applications that solve the need of internet users within
+the business environment. I offer exceptional abilities as an individual who
+creates, builds and develops business solutions.
+
+I am self-motivated and flexible to get work done at production speed and
+with optimum use of resources. I am a passionate lover of technologies with
+the willingness and motivation to grow and acquire more skill and knowledge.
+
+With my talent cutting across ability to identify problems and
+troubleshooting them, exploring new grounds, an out-of-the-box thinker with
+resource management skills, I am optimistic that you will find my
+contributions worthwhile.
+
+In case of considerations, I have attached to this cover letter my resume detailing
+my background, profile and portfolio.
+
+Please do not hesitate to contact me if you have any questions.
+
+Kind Regards.
+
+Q: Before using the FileService api, is it required to have the file in the blobstore first?
+
+- Use the BlobstoreService to get the blob data byte by byte
+- The FileService eliminates the need to store the files in datastore. This time you are storing in blobstore and not datastore.
+- After storing the file in a FileWriteChannel, use the Blobstore Api to read from the file
+- You can read from the FileWriteChannel via any of the following ways:
+	- FileReadChannel readChannel = fileService.openReadChannel(file, false);
+	- BufferedReader reader =
+          new BufferedReader(Channels.newReader(readChannel, "UTF8"));  
+       String line = reader.readLine();
+	- BlobKey blobKey = fileService.getBlobKey(file);
+  BlobstoreService blobStoreService = BlobstoreServiceFactory.getBlobstoreService();
+  String segment = new String(blobStoreService.fetchData(blobKey, 30, 40));
+
+- You can write to FileWriteChannel via any of the following ways:
+	- PrintWriter out = new PrintWriter(Channels.newWriter(writeChannel, "UTF8"));
+	  out.println("The woods are lovely dark and deep.");
+  	  out.println("But I have promises to keep.");
+	- writeChannel.write(ByteBuffer.wrap
+            ("And miles to go before I sleep.".getBytes()));
+
+
+
+ // read from the FileWriteChannel
+          BlobKey blobKey = fileService.getBlobKey(file);
+          BlobstoreService blobStoreService = BlobstoreServiceFactory.getBlobstoreService();
+          segment = new String(blobStoreService.fetchData(blobKey, 30, 40));
+
+
+
+
+
+  /**
+   * Override executeAction to save the received files in a custom place
+   * and delete this items from session.
+   */
+  @Override
+  public String executeAction(HttpServletRequest request, List<FileItem> sessionFiles) throws UploadActionException {
+      log.info("executing action");
+    String response = "";
+    int cont = 0;
+    for (FileItem item : sessionFiles) {
+      if (false == item.isFormField()) {
+        cont++;
+        try {
+          /// Create a new file based on the remote file name in the client
+          // String saveName = item.getName().replaceAll("[\\\\/><\\|\\s\"'{}()\\[\\]]+", "_");
+          // File file =new File("/tmp/" + saveName);
+
+          /// Create a temporary file placed in /tmp (only works in unix)
+          // File file = File.createTempFile("upload-", ".bin", new File("/tmp"));
+
+          /// Create a temporary file placed in the default system temp folder
+          /*File file = File.createTempFile("upload-", ".bin");
+          log.info("tempfile created successfully");
+          item.write(file);
+          log.info("file written successfully to temp");*/
+
+          //Dont store the file item in a temp file.
+          // ListingEntity listing = new ListingEntity();
+          // listing.setTitle(listingdto.getTitle());
+          // listing.setImageType(item.getContentType());
+          // listing.setImage(item);
+
+          ListingFile listingfile = new ListingFile();
+          listingfile.setTitle(item.getName());
+          listingfile.setSize(item.getSize());
+          listingfile.setImageType(item.getContentType());
+          listingfile.setImage(item.get());
+
+          PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            pm.makePersistent(listingfile);
+        }
+        finally {
+            pm.close();
+        }
+
+          /// Save a list with the received files
+          //receivedFiles.put(item.getFieldName(), file);
+          receivedFiles.put(item.getFieldName(), listingfile);
+          receivedContentTypes.put(item.getFieldName(), item.getContentType());
+
+          /// Compose a xml message with the full file information
+          response += "<file-" + cont + "-field>" + item.getFieldName() + "</file-" + cont + "-field>\n";
+          response += "<file-" + cont + "-name>" + item.getName() + "</file-" + cont + "-name>\n";
+          response += "<file-" + cont + "-size>" + item.getSize() + "</file-" + cont + "-size>\n";
+          response += "<file-" + cont + "-type>" + item.getContentType() + "</file-" + cont + "type>\n";
+        } catch (Exception e) {
+          log.info("UploadActionException occurred: " + e.getMessage());
+          throw new UploadActionException(e.getMessage());
+        }
+      }
+    }
+
+    /// Remove files from session because we have a copy of them
+    removeSessionFileItems(request);
+
+    /// Send information of the received files to the client.
+    return "<response>\n" + response + "</response>\n";
+  }
+
+
+
+
+String fieldName = request.getParameter(PARAM_SHOW);
+    //File f = receivedFiles.get(fieldName);
+    //ListingFile f = receivedFiles.get(fieldName);
+    Object lf = null;
+    InputStream resourceAsStream = null;
+    PersistenceManager pm = PMF.get().getPersistenceManager();
+    try {
+        Query q = pm.newQuery(ListingFile.class);
+        lf  = q.execute();
+        resourceAsStream = getServletContext().getResourceAsStream((String) pm.getObjectById(lf));
+    } finally {
+      pm.close();
+    }
+    if (lf != null) {
+      response.setContentType(receivedContentTypes.get(fieldName));
+      //FileInputStream is = new FileInputStream((File)lf);
+      //InputStream resourceAsStream = getServletContext().getResourceAsStream("");// you can pass in the here as a resource, the object key
+      copyFromInputStreamToOutputStream(resourceAsStream, response.getOutputStream());
+
+    } else {
+      renderXmlResponse(request, response, ERROR_ITEM_NOT_FOUND);
+   }
+
+
+
+
+  /**
+   * Override executeAction to save the received files in a custom place
+   * and delete this items from session.
+   */
+  @Override
+  public String executeAction(HttpServletRequest request, List<FileItem> sessionFiles) throws UploadActionException {
+      log.info("executing action");
+    String response = "";
+    int cont = 0;
+    for (FileItem item : sessionFiles) {
+      if (false == item.isFormField()) {
+        cont++;
+        try {
+          /// Create a new file based on the remote file name in the client
+          // String saveName = item.getName().replaceAll("[\\\\/><\\|\\s\"'{}()\\[\\]]+", "_");
+          // File file =new File("/tmp/" + saveName);
+
+          /// Create a temporary file placed in /tmp (only works in unix)
+          // File file = File.createTempFile("upload-", ".bin", new File("/tmp"));
+
+          /// Create a temporary file placed in the default system temp folder
+          /*File file = File.createTempFile("upload-", ".bin");
+          log.info("tempfile created successfully");
+          item.write(file);
+          log.info("file written successfully to temp");*/
+
+          //Dont store the file item in a temp file.
+          // ListingEntity listing = new ListingEntity();
+          // listing.setTitle(listingdto.getTitle());
+          // listing.setImageType(item.getContentType());
+          // listing.setImage(item);
+
+          ListingFile listingfile = new ListingFile();
+          listingfile.setTitle(item.getName());
+          listingfile.setSize(item.getSize());
+          listingfile.setImageType(item.getContentType());
+          listingfile.setImage(item.get());
+
+          PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            pm.makePersistent(listingfile);
+        }
+        finally {
+            pm.close();
+        }
+
+          /// Save a list with the received files
+          //receivedFiles.put(item.getFieldName(), file);
+          receivedFiles.put(item.getFieldName(), listingfile);
+          receivedContentTypes.put(item.getFieldName(), item.getContentType());
+
+          /// Compose a xml message with the full file information
+          response += "<file-" + cont + "-field>" + item.getFieldName() + "</file-" + cont + "-field>\n";
+          response += "<file-" + cont + "-name>" + item.getName() + "</file-" + cont + "-name>\n";
+          response += "<file-" + cont + "-size>" + item.getSize() + "</file-" + cont + "-size>\n";
+          response += "<file-" + cont + "-type>" + item.getContentType() + "</file-" + cont + "type>\n";
+        } catch (Exception e) {
+          log.info("UploadActionException occurred: " + e.getMessage());
+          throw new UploadActionException(e.getMessage());
+        }
+      }
+    }
+
+    /// Remove files from session because we have a copy of them
+    removeSessionFileItems(request);
+
+    /// Send information of the received files to the client.
+    return "<response>\n" + response + "</response>\n";
+  }
+
+private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+
+Map<String, BlobKey> blobs = blobstoreService.getUploadedBlobs(req);
+BlobKey blobKey = blobs.get("myFile");
+
+if (blobKey == null) {
+    res.sendRedirect("/");
+} else {
+    res.sendRedirect("/serve?blob-key=" + blobKey.getKeyString());
+}
+
+
+private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+
+public void doGet(HttpServletRequest req, HttpServletResponse res)
+    throws IOException {
+        BlobKey blobKey = new BlobKey(req.getParameter("blob-key"));
+        blobstoreService.serve(blobKey, res);
+    }
+}
+
+choice: red background
+- make the menu color brighter
+- put the about guideboard limited content on the homepage
+
+
+ ListingFile listingfile = new ListingFile();
+          listingfile.setTitle(item.getName());
+          listingfile.setImageType(item.getContentType());
+          listingfile.setImage(buffer);
+
+          PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            pm.makePersistent(listingfile);
+        }
+        finally {
+            pm.close();
+        }
+		
+# Implementing RequestFactory
+
+@ProxyFor(ListingEntity.class)
+interface ListingsEntityProxy extends EntityProxy {
+
+String getTitle();
+void setTitle(String title);
+String getDescription();
+void setDescription();
+Double getPrice();
+void setPrice(Double price);
+String getAddress();
+void setAddress(String address);
+Float getLatitude();
+void setLatitude(Float latitude);
+Float getLongitude();
+void setLongitude(Float longitude);
+String getManagedby();
+void setManagedby(String managedby);
+Boolean getStatus();
+void setStatus(Boolean status);
+ListingFile getListingFile();
+void setListingFile(ListingFile listingfile);
+
+
+}
+
+@Service(ListingEntity.class)
+interface ListingsEntityRequestContext extends RequestContext {
+
+
+Request<Boolean> createNewListing(ListingsEntityProxy listingsEntity);
+
+
+}
+
+
+
+// used in Activity
+requestFactory.employeeRequest().createNewListing(listingsEntity).fire(
+    new Receiver() {
+      @Override
+      public void onSuccess(ListingsEntityProxy employee) {
+      ...
+      }
+    });
+
+
+// to persist the listings data from the client. Within the onSubmit method of formPanel
+public void onSubmit(SubmitEvent event) {
+
+presenter.createNewListing(setNewListingsProxyData());
+}
+
+
+final ListwidgetRequestFactory rf = this.clientFactory
+				.getRequestFactory();
+		ItemListRequestContext reqCtx = rf.itemListRequest();
+		final ItemListProxy newList = reqCtx.create(ItemListProxy.class);
+
+
+How to retrieve Blobkey in GWT-RPC
+
+Hello,
+
+I want to persist the blobkey of a Blob in another Entity within an RPC call. I will like
+some guidance on how to do this. Here is what I've got so far.
+
+[insert code]
+
+In the end, I'm getting the following exception:
+
+ SEVERE: javax.servlet.ServletContext log: Exception while dispatching incoming RPC call
+     [java] com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract java.lang.Boolean org.opevel.client.service.UploadListingService.createNewListing(org.opevel.shared.ListingsEntityDTO)' threw an unexpected exception: java.lang.NullPointerException
+     [java]         at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+     [java]         at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+     [java]         at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:207)
+     [java]         at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:243)
+     [java]         at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+     [java]         at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+     [java]         at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+     [java]         at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
+     [java]         at com.google.appengine.api.blobstore.dev.ServeBlobFilter.doFilter(ServeBlobFilter.java:58)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at com.google.apphosting.utils.servlet.TransactionCleanupFilter.doFilter(TransactionCleanupFilter.java:43)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at com.google.appengine.tools.development.StaticFileFilter.doFilter(StaticFileFilter.java:122)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:388)
+     [java]         at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+     [java]         at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+     [java]         at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+     [java]         at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:418)
+     [java]         at com.google.apphosting.utils.jetty.DevAppEngineWebAppContext.handle(DevAppEngineWebAppContext.java:70)
+     [java]         at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+     [java]         at com.google.appengine.tools.development.JettyContainerService$ApiProxyHandler.handle(JettyContainerService.java:351)
+     [java]         at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+     [java]         at org.mortbay.jetty.Server.handle(Server.java:326)
+     [java]         at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+     [java]         at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:938)
+     [java]         at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:755)
+     [java]         at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:218)
+     [java]         at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+     [java]         at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+     [java]         at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+     [java] Caused by: java.lang.NullPointerException
+     [java]         at org.opevel.server.service.UploadListingServiceImpl.createNewListing(UploadListingServiceImpl.java:74)
+     [java]         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [java]         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+     [java]         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java]         at java.lang.reflect.Method.invoke(Method.java:597)
+     [java]         at com.google.appengine.tools.development.agent.runtime.Runtime.invoke(Runtime.java:100)
+     [java]         at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+     [java]         ... 30 more
+
+Please help.
+
+Regards
+
+
+Search as web service
+---------------------
+
+- Create the request with GWT-RPC
+- Use the RPC call service on the server as a Spring (Let spring handle the web service)
+- Handle the response in GWT-RPC
+- OnResponseReceived, pass it to JSONObject
+- Display the json response in search result view
+- possible APIs to use are: Apache XML-RPC, Restlet, JAX-RS with Jersey
+
+
+To-do on Spring web service
+---------------------------
+- checkout the spring-ws examples
+
+
+HasClickHandlers doSearch() {
+
+
+return new SearchWidget().getButton();
+
+}
+
+presenter.performSearch()
+
+
+//in HomeActivity
+
+public void performSearch(HasClickHandlers h) {
+
+h.addClickHandler(new ClickHandler()) {
+
+@Override
+public void onClick(ClickEvent ce) {
+
+
+
+}
+
+
+}
+
+
+}
+
+new someClass().performSearch(); // void method
+
+- A generic interface to be implemented by all widgets. (placed in org.opevel.client.widgets)
+- doSearch is not suppose to be in MainWidget. It should be in HeaderWidget
+- SearchWidget should be a subclass in HeaderWidget
+- inside the headerWidget, the implementation of the GWT-RPC should be placed
+- onClick:
+	- make the RPC call
+	- on success dispatch to the result place, and output the result as JSONObject
+
+Alternatively,
+
+- implement all the specific search functionality in a static method
+- on onClick of the button in the header, call the search static method
+
+class Searcher {
+
+public static void doSearch() {
+// make RPC call
+async.searchListingsService();
+// call the respective place
+
+}
+
+
+}
+
+in SearchWidget
+
+searchButton.addClickHandler(new ClickEvent ce) {
+public void onClick() {
+new Searcher().doSearch();
+
+}
+
+}
+
+soapUI Web Service Testing
+XSLT Debugger
+RefactorIT
+SQLite JDBC Driver
+AspectJ
+commentuncommentjsp
+tostring
+spring framework support
+drupal module
+xpathutil
+
+Error from restlet -> Drupal
+----------------------------
+Firebug's log limit has been reached. 0 entries not shown.		Preferences
+Sat Apr 16 23:55:00 GMT+100 2011 org.restlet.client INFO: Error while handling an HTTP client call
+com.google.gwt.http.client.RequestException: (NS_ERROR_DOM_BAD_URI): Access to restricted URI denied
+ code: 1012
+INDEX_SIZE_ERR: 1
+DOMSTRING_SIZE_ERR: 2
+HIERARCHY_REQUEST_ERR: 3
+WRONG_DOCUMENT_ERR: 4
+INVALID_CHARACTER_ERR: 5
+NO_DATA_ALLOWED_ERR: 6 NO_MODIFICATION_ALLOWED_ERR: 7 NOT_FOUND_ERR: 8 NOT_SUPPORTED_ERR: 9 INUSE_ATTRIBUTE_ERR: 10 INVALID_STATE_ERR: 11 SYNTAX_ERR: 12 INVALID_MODIFICATION_ERR: 13 NAMESPACE_ERR: 14 INVALID_ACCESS_ERR: 15 VALIDATION_ERR: 16 TYPE_MISMATCH_ERR: 17 result: 2152924148 filename: http://localhost:8888/org.opevel.Listings/0301C1C5A38BB66008B1060EF889F392.cache.html lineNumber: 1742 columnNumber: 0 inner: null data: null at Unknown.fw(Unknown source:0) at Unknown.Gv(Unknown source:0) at Unknown.Hv(Unknown source:0) at Unknown.PFb(Unknown source:0) at Unknown.EGb(Unknown source:0) at Unknown.gGb(Unknown source:0) at Unknown.ivb(Unknown source:0) at Unknown.MMb(Unknown source:0) at Unknown.LMb(Unknown source:0) at Unknown.KMb(Unknown source:0) at Unknown.JMb(Unknown source:0) at Unknown.ltb(Unknown source:0) at Unknown.ps(Unknown source:0) at Unknown.su(Unknown source:0) at Unknown.wu(Unknown source:0) at Unknown.$t(Unknown source:0) at Unknown.k$(Unknown source:0) at Unknown.gs(Unknown source:0) at Unknown.n$(Unknown source:0) at Unknown.B$(Unknown source:0) at Unknown.YS(Unknown source:0) at Unknown.anonymous(Unknown source:0) at Unknown.pm(Unknown source:0) at Unknown.anonymous(Unknown source:0) at Unknown.anonymous(Unknown source:0)
+Sat Apr 16 23:55:00 GMT+100 2011 org.restlet.client INFO: A recoverable error was detected (1002), attempting again in 2000 ms.
+Sat Apr 16 23:55:00 GMT+100 2011 org.restlet.client INFO: Error while handling an HTTP client call com.google.gwt.http.client.RequestException: (NS_ERROR_DOM_BAD_URI): Access to restricted URI denied code: 1012 INDEX_SIZE_ERR: 1 DOMSTRING_SIZE_ERR: 2 HIERARCHY_REQUEST_ERR: 3 WRONG_DOCUMENT_ERR: 4 INVALID_CHARACTER_ERR: 5 NO_DATA_ALLOWED_ERR: 6 NO_MODIFICATION_ALLOWED_ERR: 7 NOT_FOUND_ERR: 8 NOT_SUPPORTED_ERR: 9 INUSE_ATTRIBUTE_ERR: 10 INVALID_STATE_ERR: 11 SYNTAX_ERR: 12 INVALID_MODIFICATION_ERR: 13 NAMESPACE_ERR: 14 INVALID_ACCESS_ERR: 15 VALIDATION_ERR: 16 TYPE_MISMATCH_ERR: 17 result: 2152924148 filename: http://localhost:8888/org.opevel.Listings/0301C1C5A38BB66008B1060EF889F392.cache.html lineNumber: 1742 columnNumber: 0 inner: null data: null at Unknown.fw(Unknown source:0) at Unknown.Gv(Unknown source:0) at Unknown.Hv(Unknown source:0) at Unknown.PFb(Unknown source:0) at Unknown.EGb(Unknown source:0) at Unknown.gGb(Unknown source:0) at Unknown.ivb(Unknown source:0) at Unknown.MMb(Unknown source:0) at Unknown.MMb(Unknown source:0) at Unknown.LMb(Unknown source:0) at Unknown.KMb(Unknown source:0) at Unknown.JMb(Unknown source:0) at Unknown.ltb(Unknown source:0) at Unknown.ps(Unknown source:0) at Unknown.su(Unknown source:0) at Unknown.wu(Unknown source:0) at Unknown.$t(Unknown source:0) at Unknown.k$(Unknown source:0) at Unknown.gs(Unknown source:0) at Unknown.n$(Unknown source:0) at Unknown.B$(Unknown source:0) at Unknown.YS(Unknown source:0) at Unknown.anonymous(Unknown source:0) at Unknown.pm(Unknown source:0) at Unknown.anonymous(Unknown source:0) at Unknown.anonymous(Unknown source:0)
+Sat Apr 16 23:55:00 GMT+100 2011 org.restlet.client INFO: A recoverable error was detected (1002), attempting again in 2000 ms.
+Sat Apr 16 23:55:00 GMT+100 2011 org.restlet.client INFO: Error while handling an HTTP client call com.google.gwt.http.client.RequestException: (NS_ERROR_DOM_BAD_URI): Access to restricted URI denied code: 1012 INDEX_SIZE_ERR: 1 DOMSTRING_SIZE_ERR: 2 HIERARCHY_REQUEST_ERR: 3 WRONG_DOCUMENT_ERR: 4 INVALID_CHARACTER_ERR: 5 NO_DATA_ALLOWED_ERR: 6 NO_MODIFICATION_ALLOWED_ERR: 7 NOT_FOUND_ERR: 8 NOT_SUPPORTED_ERR: 9 INUSE_ATTRIBUTE_ERR: 10 INVALID_STATE_ERR: 11 SYNTAX_ERR: 12 INVALID_MODIFICATION_ERR: 13 NAMESPACE_ERR: 14 INVALID_ACCESS_ERR: 15 VALIDATION_ERR: 16 TYPE_MISMATCH_ERR: 17 result: 2152924148 filename: http://localhost:8888/org.opevel.Listings/0301C1C5A38BB66008B1060EF889F392.cache.html lineNumber: 1742 columnNumber: 0 inner: null data: null at Unknown.fw(Unknown source:0) at Unknown.Gv(Unknown source:0) at Unknown.Hv(Unknown source:0) at Unknown.PFb(Unknown source:0) at Unknown.EGb(Unknown source:0) at Unknown.gGb(Unknown source:0) at Unknown.ivb(Unknown source:0) at Unknown.MMb(Unknown source:0) at Unknown.MMb(Unknown source:0) at Unknown.MMb(Unknown source:0) at Unknown.LMb(Unknown source:0) at Unknown.KMb(Unknown source:0) at Unknown.JMb(Unknown source:0) at Unknown.ltb(Unknown source:0) at Unknown.ps(Unknown source:0) at Unknown.su(Unknown source:0) at Unknown.wu(Unknown source:0) at Unknown.$t(Unknown source:0) at Unknown.k$(Unknown source:0) at Unknown.gs(Unknown source:0) at Unknown.n$(Unknown source:0) at Unknown.B$(Unknown source:0) at Unknown.YS(Unknown source:0) at Unknown.anonymous(Unknown source:0) at Unknown.pm(Unknown source:0) at Unknown.anonymous(Unknown source:0) at Unknown.anonymous(Unknown source:0)
+
+On iListings (Exceptions)
+------------------------
+Exceptions and error to provide custom error pages for are:
+- 404
+- 500
+- ServletException
+
+Stuffs to constantly figure out
+- DAO
+- Handling Exceptions
+- static vs instance
+- relationship
+- For the registration, store all data in a session object and store in the datastore only when
+the user has completed the registration process (i.e at confirmation)
+
+ INFO: The backing store, D:\AllData\netBeans_Projects\Listings\build\web\WEB-INF\appengine-generated\local_db.bin, does not exist. It will be created.
+
+// in
+userentity.todto(userentity.findUserByEmail());
+
+
+// in UserEntity
+public User todto(User user) {
+
+
+
+}
+
+
+// In userEntity
+public User findUserByEmail(String email) {
+
+     PersistenceManager pm = PMF.get().getPersistenceManager();
+     //UserService userService = UserServiceFactory.getUserService();
+     //User user = userService.getCurrentUser(); // or req.getUserPrincipal()
+     User user = null;
+     email = user.getEmail();
+      try {
+      //user = pm.getObjectById(User.class, user.getEmail());
+          javax.jdo.Query q = pm.newQuery(User.class, "email == :email");
+	q.setUnique(true);
+	user = (User) q.execute(email);
+        log.info("User information is: " + user.toString());
+      return user;
+      } finally {
+          pm.close();
+      }
+  }
+
+
+Exception while trying to refactor a package in Netbeans
+--------------------------------------------------------
+Module Refactoring API threw java.lang.IllegalArgumentException: org.openide.loaders.DataObjectNotFoundException: MasterFileObject[D:\AllData\netBeans_Projects\Listings\src\java\org\opevel\client\exception@1fe52a3:de1c40,valid=false]. Please report a bug against Refactoring API module and attach your var/log/messages.log.
+
+
+Spring-managed GWTController error
+----------------------------------
+NetworkError:
+[java] java.lang.NullPointerException
+     [java]         at com.google.gwt.user.server.rpc.RPCServletUtils.writeResponseForUnexpectedFailure(RPCServletUtils.java:344)
+     [java]         at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doUnexpectedFailure(AbstractRemoteServiceServlet.java:110)
+     [java]         at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:67)
+     [java]         at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+     [java]         at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+     [java]         at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
+     [java]         at com.google.appengine.api.blobstore.dev.ServeBlobFilter.doFilter(ServeBlobFilter.java:58)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at com.google.apphosting.utils.servlet.TransactionCleanupFilter.doFilter(TransactionCleanupFilter.java:43)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at com.google.appengine.tools.development.StaticFileFilter.doFilter(StaticFileFilter.java:122)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+     [java]         at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:388)
+     [java]         at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+     [java]         at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+     [java]         at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+     [java]         at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:418)
+     [java]         at com.google.apphosting.utils.jetty.DevAppEngineWebAppContext.handle(DevAppEngineWebAppContext.java:70)
+     [java]         at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+     [java]         at com.google.appengine.tools.development.JettyContainerService$ApiProxyHandler.handle(JettyContainerService.java:351)
+     [java]         at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+     [java]         at org.mortbay.jetty.Server.handle(Server.java:326)
+     [java]         at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+     [java]         at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:938)
+     [java]         at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:755)
+     [java]         at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:218)
+     [java]         at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+     [java]         at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+     [java]         at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+
+Possible cause: The servlet SpringSignupServiceImpl has a problem in the request to /register
+
+
+SOlution by systempuntoout
+--------------------------
+Got the following error:
+
+    Object Manager has been closed
+
+Caused by:
+
+javax.jdo.JDOUserException: Object Manager has been closed
+	at org.datanucleus.jdo.NucleusJDOHelper.getJDOExceptionForNucleusException(NucleusJDOHelper.java:375)
+	at org.datanucleus.jdo.JDOPersistenceManager.close(JDOPersistenceManager.java:281)
+	at org.opevel.server.dao.AgentEntityDAOImpl.findAgentEntityByString(AgentEntityDAOImpl.java:95)
+	at org.opevel.web.AgentController.handleRequest(AgentController.java:80)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.appengine.tools.development.agent.runtime.Runtime.invoke(Runtime.java:100)
+	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:174)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:421)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:409)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:771)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:716)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:644)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:549)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:617)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
+	at com.google.appengine.api.blobstore.dev.ServeBlobFilter.doFilter(ServeBlobFilter.java:58)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at com.google.apphosting.utils.servlet.TransactionCleanupFilter.doFilter(TransactionCleanupFilter.java:43)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at com.google.appengine.tools.development.StaticFileFilter.doFilter(StaticFileFilter.java:122)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:388)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:418)
+	at com.google.apphosting.utils.jetty.DevAppEngineWebAppContext.handle(DevAppEngineWebAppContext.java:70)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at com.google.appengine.tools.development.JettyContainerService$ApiProxyHandler.handle(JettyContainerService.java:351)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+NestedThrowablesStackTrace:
+Object Manager has been closed
+org.datanucleus.exceptions.NucleusUserException: Object Manager has been closed
+	at org.datanucleus.ObjectManagerImpl.close(ObjectManagerImpl.java:788)
+	at org.datanucleus.jdo.JDOPersistenceManager.close(JDOPersistenceManager.java:271)
+	at org.opevel.server.dao.AgentEntityDAOImpl.findAgentEntityByString(AgentEntityDAOImpl.java:95)
+	at org.opevel.web.AgentController.handleRequest(AgentController.java:80)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.appengine.tools.development.agent.runtime.Runtime.invoke(Runtime.java:100)
+	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:174)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:421)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:409)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:771)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:716)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:644)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:549)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:617)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
+	at com.google.appengine.api.blobstore.dev.ServeBlobFilter.doFilter(ServeBlobFilter.java:58)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at com.google.apphosting.utils.servlet.TransactionCleanupFilter.doFilter(TransactionCleanupFilter.java:43)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at com.google.appengine.tools.development.StaticFileFilter.doFilter(StaticFileFilter.java:122)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:388)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:418)
+	at com.google.apphosting.utils.jetty.DevAppEngineWebAppContext.handle(DevAppEngineWebAppContext.java:70)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at com.google.appengine.tools.development.JettyContainerService$ApiProxyHandler.handle(JettyContainerService.java:351)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+
+
+Solution by xtian Ernst
+-----------------------
+    Persistence Manager has been closed
+
+Caused by:
+
+javax.jdo.JDOFatalUserException: Persistence Manager has been closed
+	at org.datanucleus.jdo.JDOPersistenceManager.assertIsOpen(JDOPersistenceManager.java:2125)
+	at org.datanucleus.jdo.JDOPersistenceManager.newQuery(JDOPersistenceManager.java:1247)
+	at org.datanucleus.jdo.JDOPersistenceManager.newQuery(JDOPersistenceManager.java:1234)
+	at org.opevel.server.dao.AgentEntityDAOImpl.findAgentEntityByString(AgentEntityDAOImpl.java:107)
+	at org.opevel.web.AgentController.handleRequest(AgentController.java:80)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.appengine.tools.development.agent.runtime.Runtime.invoke(Runtime.java:100)
+	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:174)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:421)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:409)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:771)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:716)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:644)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:549)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:617)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
+	at com.google.appengine.api.blobstore.dev.ServeBlobFilter.doFilter(ServeBlobFilter.java:58)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at com.google.apphosting.utils.servlet.TransactionCleanupFilter.doFilter(TransactionCleanupFilter.java:43)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at com.google.appengine.tools.development.StaticFileFilter.doFilter(StaticFileFilter.java:122)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1157)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:388)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:418)
+	at com.google.apphosting.utils.jetty.DevAppEngineWebAppContext.handle(DevAppEngineWebAppContext.java:70)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at com.google.appengine.tools.development.JettyContainerService$ApiProxyHandler.handle(JettyContainerService.java:351)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+
+# Find a way to not make the application respond until all rpc requests have completed. Implement
+something related gmail "Loading"
+
+Business partnership letter
+---------------------------
+1. full info about the business
+2. roles of indiividual parties
+3. profit sharing ratio
+4. resolving disputes
+5.
+
+
+
+
+
+
+
+
+ClientResource r = new ClientResource("http://pekuliarproperties.com/services/rest/user/1");
+                r.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "root",
+                        "r00tu$5r");
+
+                // Set the callback object invoked when the response is
+                // received.
+                r.setOnResponse(new Uniform() {
+                    public void handle(Request request, Response response) {
+                        if (response.getStatus().isSuccess()) {
+                            try {
+                                //tbBasic.setText(response.getEntity().getText());
+                                Window.alert(response.getEntity().getText());
+                            } catch (IOException e) {
+                                //tbBasic.setText("IOException: "+ e.getMessage());
+                                Window.alert("IOException: " + e.getMessage());
+                            }
+                        } else {
+                            //tbBasic.setText(response.getStatus().getName());
+                            Window.alert(response.getStatus().getName());
+                        }
+                    }
+                });
+                r.get();
+
+
+SearchPlace
+SearchActivity
+SearchResultView
+SearchResultViewImpl
+
+//in SearchWidget.java
+
+public class SearchWidget implements SearchResultView {
+
+private Presenter presenter;
+
+presenter.parseJSON(result);
+clientFactory.getPlaceController().goTo(new SearchResultPlace(historyToken));
+
+}
+
+public interface SearchResultView {
+
+public interface Presenter {
+
+void parseJSON(String result);
+
+}
+}
+
+// in SearchResultActivity.java
+public class SearchResultActivity implements SearchResultView.Presenter {
+
+public void parseJSON(String result) {
+try {
+                JSONValue jsonValue = JSONParser.parseStrict(result);
+                new SearchResultViewImpl().displayJSONObject(jsonValue);
+              } catch (JSONException e) {
+                new SearchResultViewImpl().displayParseError(result);
+              }
+
+}
+
+}
+
+
+
+// in SearchResultViewImpl
+public class SearchResultViewImpl implements SearchResultView {
+
+public void displayJSONObject(JSONValue jsonValue) {
+
+}
+
+
+  public void displayParseError(String responseText) {
+    displayError("Failed to parse JSON response", responseText);
+  }
+
+public void displayError(String errorType, String errorMessage) {
+    jsonTree.removeItems();
+    jsonTree.setVisible(true);
+    TreeItem treeItem = jsonTree.addItem(errorType);
+    treeItem.addItem(errorMessage);
+    treeItem.setStyleName("JSON-JSONResponseObject");
+    treeItem.setState(true);
+  }
+
+}
+
+
+git remote add origin git@github.com:drecute/erp-project.git
+
+Stuffs to create product items for
+
+-
+
+
+
+* Make Hostel content type Ubercart product item
+
+
+
+eduerptransaction module
+	- eduerptransaction_invoicing.module
+	- eduerptransaction_services.module
+	- eduerptransaction.module
+
+-javaagent:"D:\appengine-java-sdk-1.4.3\lib\agent\appengine-agent.jar"
+
+Questions on GWT at G-Nigeria
+-----------------------------
+
+- Writing multiple modules in one application, can this be compared with OSGI modular Java development?
+- Gin and Guice in Activity and Place
+- Embedding GWT widgets in JSP pages as a JSP include tag
+- Solve this (http://balaji-chopparapu.blogspot.com/2010/04/javaioioexception-cannot-run-program.html)
+GWT or Java IRC channel. Question is java.io.IOException: CreateProcess error=87, The parameter is incorrect
+- Download MySQL 5.1
+
+
+// all content at g-nigeria website.
+colorzilla.com/gradient-editor - css generator
+
+spritegen.we
+
+html5rocks.com
+html5rocks
+
+Strategy for fund raising
+
+- Proof of concept
+- structure the team
+- choose investment strategy
+- investment documents
+- negotiation
+- transaction
+
+Solution to CreateProcess error=87, The parameter is incorrect and java.lang.NoClassDefFoundError: javax/jdo/spi/Detachable
+---------------------------------------------------------------------------------------------------------------------------
+This solution is peculiar only to Netbeans.
+
+1. Make sure the path to your Java project files is not too long
+2. Always cross-check project.properties and GWT property files to see what the project property values are.
+e.g classpath settings, duplicate of added libraries etc.
+3. Also, make sure the correct GWT version (>= 2.0) is being used by your project.
+
+Thanks to Uju (G-Nigeria) and especially Juan for the pointers.
+
+# JUnit Errors
+--------------
+Validating newly compiled units
+   [ERROR] Errors in 'jar:file:/D:/gwt-2.1.1/gwt-user.jar!/com/google/gwt/logging/client/LogConfiguration.java'
+      [ERROR] Line 77: The method addHandler(Handler) is undefined for the type Logger
+[ERROR] Failed to create an instance of 'com.google.gwt.junit.client.impl.JUnitHost' via deferred binding
+com.google.gwt.dev.jjs.InternalCompilerException: Unexpected error during visit.
+        at com.google.gwt.dev.js.ast.JsVisitor.translateException(JsVisitor.java:466)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:452)
+        at com.google.gwt.dev.js.ast.JsVisitor.doAccept(JsVisitor.java:423)
+        at com.google.gwt.dev.js.ast.JsVisitor.accept(JsVisitor.java:98)
+        at com.google.gwt.dev.js.JsToStringGenerationVisitor.visit(JsToStringGenerationVisitor.java:667)
+        at com.google.gwt.dev.shell.Jsni$JsSourceGenWithJsniIdentFixup.visit(Jsni.java:224)
+        at com.google.gwt.dev.js.ast.JsInvocation.traverse(JsInvocation.java:64)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:450)
+        at com.google.gwt.dev.js.ast.JsVisitor.doAccept(JsVisitor.java:423)
+        at com.google.gwt.dev.js.ast.JsVisitor.accept(JsVisitor.java:98)
+        at com.google.gwt.dev.shell.Jsni$JsSourceGenWithJsniIdentFixup.visit(Jsni.java:219)
+        at com.google.gwt.dev.js.ast.JsInvocation.traverse(JsInvocation.java:64)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:450)
+        at com.google.gwt.dev.js.ast.JsVisitor.doAccept(JsVisitor.java:423)
+        at com.google.gwt.dev.js.ast.JsVisitor.accept(JsVisitor.java:98)
+        at com.google.gwt.dev.js.JsToStringGenerationVisitor.visit(JsToStringGenerationVisitor.java:286)
+        at com.google.gwt.dev.js.ast.JsArrayAccess.traverse(JsArrayAccess.java:72)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:450)
+        at com.google.gwt.dev.js.ast.JsVisitor.doAccept(JsVisitor.java:423)
+        at com.google.gwt.dev.js.ast.JsVisitor.accept(JsVisitor.java:98)
+        at com.google.gwt.dev.js.JsToStringGenerationVisitor.visit(JsToStringGenerationVisitor.java:311)
+        at com.google.gwt.dev.js.ast.JsBinaryOperation.traverse(JsBinaryOperation.java:108)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:450)
+        at com.google.gwt.dev.js.ast.JsVisitor.doAccept(JsVisitor.java:423)
+        at com.google.gwt.dev.js.ast.JsVisitor.accept(JsVisitor.java:98)
+        at com.google.gwt.dev.js.JsToStringGenerationVisitor.visit(JsToStringGenerationVisitor.java:509)
+        at com.google.gwt.dev.js.ast.JsExprStmt.traverse(JsExprStmt.java:37)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:450)
+        at com.google.gwt.dev.js.ast.JsVisitor.doAccept(JsVisitor.java:423)
+        at com.google.gwt.dev.js.ast.JsVisitor.accept(JsVisitor.java:98)
+        at com.google.gwt.dev.js.JsToStringGenerationVisitor.printJsBlock(JsToStringGenerationVisitor.java:1002)
+        at com.google.gwt.dev.js.JsSourceGenerationVisitor.visit(JsSourceGenerationVisitor.java:48)
+        at com.google.gwt.dev.js.ast.JsBlock.traverse(JsBlock.java:43)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:450)
+        at com.google.gwt.dev.js.ast.JsVisitor.doAccept(JsVisitor.java:423)
+        at com.google.gwt.dev.js.ast.JsVisitor.accept(JsVisitor.java:98)
+        at com.google.gwt.dev.shell.Jsni.generateJavaScriptForHostedMode(Jsni.java:255)
+        at com.google.gwt.dev.shell.Jsni.getJavaScriptForHostedMode(Jsni.java:242)
+        at com.google.gwt.dev.shell.ModuleSpaceOOPHM.createNativeMethods(ModuleSpaceOOPHM.java:49)
+        at com.google.gwt.dev.shell.CompilingClassLoader.injectJsniMethods(CompilingClassLoader.java:1215)
+        at com.google.gwt.dev.shell.CompilingClassLoader.findClass(CompilingClassLoader.java:1039)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        at com.google.gwt.junit.client.impl.JUnitHost_Proxy.<clinit>(JUnitHost_Proxy.java:15)
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at com.google.gwt.dev.shell.ModuleSpace.loadClassFromSourceName(ModuleSpace.java:654)
+        at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:458)
+        at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:49)
+        at com.google.gwt.core.client.GWT.create(GWT.java:97)
+        at com.google.gwt.junit.client.impl.GWTRunner.<init>(GWTRunner.java:184)
+        at com.google.gwt.junit.client.impl.GWTRunnerImplgecko1_8.<init>(GWTRunnerImplgecko1_8.java:6)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+        at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+        at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+        at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:465)
+        at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:375)
+        at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:183)
+        at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:510)
+        at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+        at java.lang.Thread.run(Thread.java:619)
+Caused by: java.lang.SecurityException: Prohibited package name: java.io
+        at java.lang.ClassLoader.preDefineClass(ClassLoader.java:479)
+        at java.lang.ClassLoader.defineClass(ClassLoader.java:614)
+        at java.lang.ClassLoader.defineClass(ClassLoader.java:465)
+        at com.google.gwt.dev.shell.CompilingClassLoader.findClass(CompilingClassLoader.java:1011)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at com.google.gwt.dev.shell.CompilingClassLoader$DispatchClassInfoOracle.getClassFromBinaryName(CompilingClassLoader.java:236)
+        at com.google.gwt.dev.shell.CompilingClassLoader$DispatchClassInfoOracle.getClassFromBinaryOrSourceName(CompilingClassLoader.java:266)
+        at com.google.gwt.dev.shell.CompilingClassLoader$DispatchClassInfoOracle.getClassInfoFromClassName(CompilingClassLoader.java:288)
+        at com.google.gwt.dev.shell.CompilingClassLoader$DispatchClassInfoOracle.getDispId(CompilingClassLoader.java:146)
+        at com.google.gwt.dev.shell.CompilingClassLoader.getDispId(CompilingClassLoader.java:930)
+        at com.google.gwt.dev.shell.Jsni$JsSourceGenWithJsniIdentFixup.visit(Jsni.java:105)
+        at com.google.gwt.dev.js.ast.JsNameRef.traverse(JsNameRef.java:121)
+        at com.google.gwt.dev.js.ast.JsVisitor.doTraverse(JsVisitor.java:450)
+        ... 61 more
+[ERROR] Failed to create an instance of 'com.google.gwt.junit.client.impl.GWTRunner' via deferred binding
+java.lang.RuntimeException: Deferred binding failed for 'com.google.gwt.junit.client.impl.JUnitHost' (did you forget to inherit a required module?)
+        at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:53)
+        at com.google.gwt.core.client.GWT.create(GWT.java:97)
+        at com.google.gwt.junit.client.impl.GWTRunner.<init>(GWTRunner.java:184)
+        at com.google.gwt.junit.client.impl.GWTRunnerImplgecko1_8.<init>(GWTRunnerImplgecko1_8.java:6)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+        at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+        at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+        at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:465)
+        at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:375)
+        at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:183)
+        at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:510)
+        at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+        at java.lang.Thread.run(Thread.java:619)
+Caused by: com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+        at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:503)
+        at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:49)
+        ... 13 more
+[ERROR] Unable to load module entry point class com.google.gwt.junit.client.impl.GWTRunner (see associated exception for details)
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+        at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:503)
+        at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:375)
+        at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:183)
+        at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:510)
+        at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+        at java.lang.Thread.run(Thread.java:619)
+[ERROR] Failed to load module 'org.opevel.Listings.JUnit' from user agent 'Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.9.1.19) Gecko/20110420 Firefox/3.5.19 GTB7.1' at coasthost-pc.coasthost.local:2034
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+        at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:434)
+        at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:183)
+        at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:510)
+        at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+        at java.lang.Thread.run(Thread.java:619)
+
+MORE NOTES ON MVP4G AND GWT
+---------------------------
+
+CodeSplitting is a way of calling multiple modules in a single application e.g
+GWT.runAsync(new RunAsyncCallback() {
+
+});
+
+Deferred Binding is a dynamic implementation of any interface. Deferred Binding is a tool to create
+cross-browser and translingual implementations. Namely for techniques that will differ between contexts
+of project usage. It is used because Reflection is not supported in GWT. To use Deferred binding;
+GWT.create(...class)
+
+To avoid total crash of your whole application due to javascript error, always use
+GWT.setUncaughtExceptionHandler
+
+Todo
+
+- Look for examples of Code Splitting
+
+Questions
+1. I'll appreciate a little bit of explanation on Layouts as descibed in the slide. Also, can i use MVP4g
+without UIBinder?
+2. Can CodeSplitting technique be used to load another Module within the same app.
+
+github.com/shamansir/gwt-mvp4g-layouting-demo
+
+- In mvp4g, when you override bind() in your presenter, it binds your View to your presenter so you can
+register events, perform rpc service etc
+
+

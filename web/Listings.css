@@ -1,0 +1,672 @@
+/* 
+    Document   : Listings
+    Created on : Mar 23, 2011, 11:36:53 PM
+    Author     : Kayode Odeyemi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/***************************/
+/* RESET MARGINS & PADDING */
+/***************************/
+
+html, body, div, span,
+p, blockquote, pre, code,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+/*form, fieldset, legend, label, input, textarea,*/
+table, caption, tbody, tfoot, thead, tr, th, td,
+.resizable-textarea {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  outline-style:none;
+outline-width:0;
+vertical-align:baseline;
+font-size: 100%
+}
+
+root { 
+    display: block;
+}
+/* Basic Typography & Colors
+-------------------------------------------------------------- */
+/* Add general site styling here for typography and background */
+body {
+  font: 75%/1.4em Verdana, Arial, Helvetica, sans-serif;  /* also set in fusion_starter.info: settings[base-font-size] = font-size-12 */
+  background: #f6f7f2
+}
+
+/* Default link styles - separate a:visited for a different visited link style */
+a,
+a:link,
+a:visited {
+    text-decoration: none
+}
+
+/* Hover/active link styles. Don't forget :focus for accessibility */
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none
+}
+
+/*  Main Area (content + sidebars)
+-------------------------------------------------------------- */
+.main-wrapper {
+    margin: 0 auto;
+    width: 1000px;
+    /*border: solid 1px #eee;
+    overflow: auto;
+    height:1000px*/
+}
+
+
+/***********/
+/* HEADINGS */
+/************/
+
+h1 {
+  font-size: 2.5em;
+  font-weight: normal;
+    margin-bottom: 0.5em
+}
+
+h2 {
+  font-size: 1.75em;
+  font-weight: normal;
+    margin-bottom: 0.5em
+}
+
+h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+    margin-bottom: 0.5em
+}
+
+h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+    margin-bottom: 0.5em
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+/* Page titles
+/-------------------------------------------------------------- */
+/* Page and full node titles */
+h1.title {
+
+    font-family:Georgia, "Times New Roman", Times, serif;
+    line-height: 1.272em;
+}
+
+/* Typography for node titles */
+h2.title {
+    font-family:Georgia, "Times New Roman", Times, serif;
+    line-height: 1em;
+}
+
+h2.sub-title {
+    font-family:Georgia, "Times New Roman", Times, serif;
+    color: #999
+}
+/* Colors and styles for linked node titles, ie. teaser listing at /node */
+h2.title a:link,
+h2.title a:visited {
+}
+
+h2.title a:hover,
+h2.title a:focus,
+h2.title a:active {
+}
+
+h3.title {
+    font-family:Georgia, "Times New Roman", Times, serif;
+}
+h3.sub-title {
+    font-family:Georgia, "Times New Roman", Times, serif;
+    color: #999
+}
+h4.menu-title {
+    font-weight:bold;
+    color:#fff
+}
+/* Add float here to put logo and site name side by side, also add margins as
+  needed */
+#logo {
+    float:left;
+    width: 50px;
+    height: 50px;
+    background: #999
+}
+
+/* Link and hover styles for site name */
+#site-name a:link,
+#site-name a:visited,
+#site-name a:hover,
+#site-name a:active {
+}
+
+/* Typography for site slogan */
+#slogan {
+}
+
+
+/* Header Regions
+-------------------------------------------------------------- */
+.header-group-wrapper {
+    width:100%;
+    height: 100px;
+}
+
+.header-group {
+}
+
+/* Header Top region which sits above the header */
+/* Works well with inline login or inline menu block style */
+.header-top-wrapper {
+}
+
+.header-top {
+}
+
+/* Header Search
+-------------------------------------------------------------- */
+.gwt-searchPanel {
+    float:right;
+  position: relative;
+  top: 10px;
+  width: auto;
+  margin-right:30px
+}
+.searchbox {
+    border: 1px solid #d5d5d5;
+  color: #292929;
+  margin-right: 20px;
+  width: 150px;
+}
+#search-box {
+  /*float: right;*/
+  position: relative;
+  top: 10px;
+  width: auto;
+}
+
+#search-box.block .inner {
+  margin: 0;
+  text-align: right;
+}
+
+#search-input .form-text {
+  border: 1px solid #d5d5d5;
+  color: #292929;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
+}
+
+#search-button {
+  position: absolute;
+  right: 0;
+  top: 3px;
+}
+
+/* Primary Menu
+/-------------------------------------------------------------- */
+/* Add general styles for primary menu here, such as typography, borders, floats,
+  or spacing above/below */
+.primary-menu {
+    float:left;
+    /*border: solid 1px #fff;*/
+    line-height: 50px;
+    margin: 0 0 0 10px
+}
+.primary-menu a {
+    color:#fff;
+    font-weight: bold;
+    /*border-right: solid 1px #333*/
+}
+
+
+/**********/
+/* LISTS */
+/*******/
+ul {
+  margin: 0.5em 0 1em;
+  padding: 0;
+}
+
+ol {
+  margin: 0.75em 0 1.25em;
+  padding: 0;
+}
+
+ol li, ul li {
+  margin: 0.4em 0 0.4em .5em;    /* LTR */
+}
+
+ul.menu li,
+.item-list ul li {
+  margin: 0.15em 0 0.15em 1em 0.5em;
+  list-style-position: inside
+}
+
+ul.menu ul, .item-list ul ul {
+  margin-left: 0;
+}
+
+/*ol li,
+ul li,
+ul.menu li,
+.item-list ul li,
+li.leaf {
+  margin: 0.15em 0 0.15em 0;
+  padding: 0.2em 0 0 1.333em;     LTR 
+  list-style-position: inside
+}*/
+ol li {
+  padding: 0 0 .3em;
+  margin-left: 2em;    /* LTR */
+}
+
+ul.links li,
+ul.links.inline {
+  background: transparent;
+}
+
+/* Header - Search
+-------------------------------------------------------------- */
+.search-box {
+}
+
+.search-box-inner {
+}
+
+/* Sidebar Regions
+-------------------------------------------------------------- */
+/* Sidebar widths can be controlled through theme settings */
+.sidebar-first {
+}
+
+.sidebar-last {
+}
+
+/***************/
+/* LAYOUT *****/
+/**************/
+.float-left {
+    float:left
+}
+.float-right {
+    float:right
+}
+.container-wrapper {
+
+}
+.inner-container-wrapper {
+
+}
+.block {
+    
+}
+
+/* Content Regions
+-------------------------------------------------------------- */
+.content-top {
+}
+
+.content {
+}
+
+.content-inner {
+}
+
+.content-bottom {
+}
+p {
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 160%;
+  margin: 10px 0;
+}
+.node {
+    font-size:12px
+}
+.title-caption {
+    font-size: 13px
+}
+#welcome-block {
+    padding: 8px
+}
+.node-image{
+    width:35px;
+    height:35px;
+    border:solid 1px #666
+}
+/*#upload-feature-block .inner-container-wrapper {
+    border:solid 1px #333;
+    width:80%
+}*/
+#feature-slider-block {
+    margin-bottom: 8px
+}
+.front-item-list li{
+    font-size: 12px;
+}
+.item-list ul {
+
+}
+.item-list ul li {
+
+}
+.loginButtonWrapper .gwt-Button {
+    float:left
+}
+.statuslbl {
+    padding: 8px;
+    background: #FFF1A8;
+    font-weight: bold
+
+}
+/* GWT Specific Styling
+-------------------------------------------------------------- */
+
+.gwt-innerContainer {
+    width: 100%;
+    /*height: 1000px;
+    background: #ccc;*/
+}
+.gwt-headerLinksWrapper {
+    float:right;
+    /*background: #000;*/
+    width: 200px;
+    height: 50px;
+    /*margin-top: 8px;*/
+    line-height: 58px
+}
+.gwt-menuPanel {
+    background: #4768c7;
+    width:100%;
+    height: 50px;
+}
+.gwt-accountDisclosurePanel {
+    width:150px;
+    height: 35px;
+    float:right;
+    line-height: 35px;
+    background: #5d77aa;
+    margin: 8px 8px 0 0;
+    z-index: 900;
+}
+.gwt-accountDisclosurePanel a.header {
+    margin: 0 0 0 8px;
+    color:#fff;
+    text-decoration: none;
+    font-weight: bold
+}
+.gwt-accountDisclosurePanel a.content {
+    margin: 0 0 0 8px;
+    color:#fff
+}
+.gwt-IntroVideoWrapper {
+    background: #333;
+    width: 400px;
+    height: 300px;
+    /*float: left;*/
+}
+.gwt-oIdDisclosurePanel {
+    width:150px;
+    /*height: 35px;*/
+    background: #5d77aa;
+    float: right;
+    margin: 0 15px;
+    overflow: visible
+}
+.gwt-oIdDisclosurePanel .header {
+    margin: 8px;
+    color:#fff;
+    text-decoration: none;
+    font-weight: bold
+}
+.gwt-oIdDisclosurePanel .content {
+    color:#fff;
+    color:#fff;
+    text-decoration: none;
+    z-index: +900;
+    overflow: visible
+}
+.gwt-oIdDisclosurePanel tbody tr td div{
+    overflow: visible;
+}
+.gwt-ExploreTree {
+    background: #e0e0e0;
+    width: 190px;
+    /*height:300px;*/
+    float:left;
+    margin-right: 10px;
+    padding:8px
+}
+.gwt-ExploreTree div.gwt-Hyperlink {
+    margin-bottom: 8px
+}
+.gwt-FrontContentArea {
+    background: #fff;
+    width: 76%;
+    /*height:300px;*/
+    float:right;
+    padding:8px;
+    border: solid 1px #e0e0e0
+}
+.gwt-frontdlptop {
+    margin: 13px 0 8px 0;
+    width:100%;
+}
+.gwt-frontdlpcontent {
+    width:100%
+}
+.gwt-signupPanel {
+    background: #f4d881;
+    width: 100%;
+    height: 300px;
+    padding:13px;
+    overflow: visible
+}
+.gwt-signupPanel form table tbody tr td{
+    padding: 0 0 10px 0
+}
+.gwt-featureGrid {
+    width:100%
+}
+.gwt-featureGrid td {
+    width:50px
+}
+.gwt-featureGrid td div.container-wrapper {
+    /*padding: 10px*/
+}
+.gwt-featureGrid .inner-container-wrapper {
+    border:solid 1px #333;
+    width:80%;
+     padding: 10px
+}
+.gwt-featureGrid button.gwt-Button {
+    margin: 0 0 0 50px
+}
+.gwt-uploadPanelWrapper {
+
+}
+.gwt-uploadListingFormPanel {
+    width:80%;
+    border: solid 1px #ddd;
+    margin:10px 0;
+    padding: 8px
+}
+.gwt-uploadListingPanelInner {
+    /*margin: 0px auto;*/
+}
+.gwt-footerPanel {
+    width:100%;
+    background: #333;
+    height: 50px;
+    margin: 8px 0
+}
+
+/********************/
+/* GWT STYLES ON UPLOAD PAGE */
+/*****************************/
+.gwt-listingInfoPanel {
+    width: 350px;
+    float:left;
+    border: solid 1px #ddd;
+    padding: 8px
+}
+.gwt-listingLocationPanel {
+    width:350px;
+    float:right;
+    border: solid 1px #ddd;
+    padding: 8px
+}
+.uploadstatuslbl {
+    margin: 0 auto 10px auto;
+    width: 50%;
+}
+/************************************/
+/* General widget override styling */
+/***********************************/
+.gwt-HTML { }
+.gwt-Hyperlink { }
+.gwt-Hyperlink a{
+    font-size: 11px
+}
+/*****************/
+/* Label Styling */
+/*****************/
+.gwt-Label { }
+/****************/
+/* TextBox ******/
+/****************/
+.gwt-TextBox {}
+
+/********************/
+/* DisclosurePanel */
+/*******************/
+.gwt-DisclosurePanel {
+
+}
+.gwt-DisclosurePanel a.header {
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff
+}
+.gwt-DisclosurePanel a.content {
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff
+}
+.gwt-DisclosurePanel-open {
+
+}
+.gwt-DisclosurePanel-closed {
+
+}
+/*  Footer Regions
+-------------------------------------------------------------- */
+.credit {
+    background: #e0e0e0;
+    padding: 5px;
+    line-height: 25px;
+    margin: 5px 5px 0 0
+}
+.copyright {
+    margin: 5px 0 0 10px;
+    line-height: 25px;
+    color: #fff
+}
+.footer-wrapper {
+}
+
+.footer {
+}
+
+.footer-inner {
+}
+
+.footer-message-wrapper {
+}
+
+.footer-message {
+}
+
+.footer-message-inner {
+}
+
+.footer-message-text {
+}
+
+
+/* Tables
+-------------------------------------------------------------- */
+table {
+}
+
+/* Body of tables */
+tbody {
+  border-top: 1px solid #ccc;
+}
+
+/* Header of tables */
+thead th,
+th {
+  border-bottom: 3px solid #ccc;
+}
+
+tbody th {
+  border-bottom: 1px solid #ccc;
+}
+
+/* Alternating row background styles */
+tr.even,
+tr.even td {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+}
+
+tr.odd,
+tr.odd td {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+td.active {
+}
+
+tr.drag td,
+tr.drag-previous td {
+  color: #000;
+}
+
+
+/* additional hack styles */
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clear {
+  clear: both;
+}
